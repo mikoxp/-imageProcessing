@@ -4,7 +4,6 @@ import image_data.ImageContainer;
 import image_data.ImageFormat;
 
 import javax.imageio.ImageIO;
-import javax.imageio.stream.ImageOutputStream;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
