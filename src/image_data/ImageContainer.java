@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 /**
  * Created by moles on 2016-09-09.
  * This is container used to save data with path and format  and easy change it
+ *
  * @author moles
  */
 public class ImageContainer {
@@ -14,13 +15,14 @@ public class ImageContainer {
     private String filePath;
     private String imageFormat;
 
-    public ImageContainer(BufferedImage bufferedImage,String filePath, String imageFormat) {
+    public ImageContainer(BufferedImage bufferedImage, String filePath, String imageFormat) {
         this.bufferedImage = bufferedImage;
         this.width = bufferedImage.getWidth();
         this.height = bufferedImage.getHeight();
         this.filePath = filePath;
         this.imageFormat = imageFormat;
     }
+
     public BufferedImage getBufferedImage() {
         return bufferedImage;
     }
