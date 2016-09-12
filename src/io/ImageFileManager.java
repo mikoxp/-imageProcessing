@@ -57,7 +57,7 @@ public class ImageFileManager {
         }
         String result = "";
         for (String s : ImageFormat.formats) {
-            if (path.indexOf("." + s) != -1) {
+            if (path.contains("." + s)) {
                 result = s;
             }
         }
@@ -94,7 +94,6 @@ public class ImageFileManager {
                 result = path;
             }
         }
-
         return result;
     }
 }
