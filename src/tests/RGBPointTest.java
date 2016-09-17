@@ -1,6 +1,9 @@
 package tests;
 
 import org.junit.Test;
+import transformation.point.RGBPoint;
+
+import java.awt.*;
 
 import static org.junit.Assert.*;
 
@@ -10,8 +13,10 @@ import static org.junit.Assert.*;
  */
 public class RGBPointTest {
     @Test
-    public void negative() throws Exception {
-
+    public void negative_base_grayScalePoint() throws Exception {
+        RGBPoint negative=new RGBPoint(Color.BLACK);
+        negative.negative();
+        assertEquals(Color.WHITE,negative.getColor());
     }
 
     @Test

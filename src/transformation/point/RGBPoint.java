@@ -26,16 +26,18 @@ public class RGBPoint extends RGB {
      *
      * @return point negative
      */
-    public RGB negative(){
-        return this;
+    public void negative(){
+        setRed(255-getRed());
+        setGreen(255-getGreen());
+        setBlue(255-getBlue());
     }
 
     /**
      *
      * @return point grey scale
      */
-    public RGB greyScale(){
-        return this;
+    public void greyScale(){
+        
     }
 
     /**
@@ -43,8 +45,8 @@ public class RGBPoint extends RGB {
      * @param factor value between 20 and 40
      * @return sepia point
      */
-    public RGB sepia(int factor){
-        return this;
+    public void sepia(int factor){
+
     }
 
     /**
@@ -52,7 +54,7 @@ public class RGBPoint extends RGB {
      * @param fade fade container
      * @return point with fade
      */
-    public RGB fadeColor(Fade fade){
-        return this;
+    public void fadeColor(Fade fade){
+
     }
 }
