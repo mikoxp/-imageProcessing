@@ -26,7 +26,6 @@ public class PointTransformationManager {
                 bufferedImage.setRGB(i,j,rgbPoint.getColor().getRGB());
             }
         }
-        container.setBufferedImage(bufferedImage);
         return container;
     }
 
@@ -39,10 +38,11 @@ public class PointTransformationManager {
         BufferedImage bufferedImage = container.getBufferedImage();
         for(i=0;i<container.getWidth();i++){
             for(j=0;j<container.getHeight();j++){
-
+                rgbPoint=new RGBPoint(bufferedImage.getRGB(i,j));
+                rgbPoint.greyScale();
+                bufferedImage.setRGB(i,j,rgbPoint.getColor().getRGB());
             }
         }
-        container.setBufferedImage(bufferedImage);
         return container;
     }
 
@@ -56,10 +56,11 @@ public class PointTransformationManager {
         BufferedImage bufferedImage = container.getBufferedImage();
         for(i=0;i<container.getWidth();i++){
             for(j=0;j<container.getHeight();j++){
-
+                rgbPoint=new RGBPoint(bufferedImage.getRGB(i,j));
+                rgbPoint.sepia(factor);
+                bufferedImage.setRGB(i,j,rgbPoint.getColor().getRGB());
             }
         }
-        container.setBufferedImage(bufferedImage);
         return container;
     }
 
@@ -73,10 +74,11 @@ public class PointTransformationManager {
         BufferedImage bufferedImage = container.getBufferedImage();
         for(i=0;i<container.getWidth();i++){
             for(j=0;j<container.getHeight();j++){
-
+                rgbPoint=new RGBPoint(bufferedImage.getRGB(i,j));
+                rgbPoint.fadeColor(fade);
+                bufferedImage.setRGB(i,j,rgbPoint.getColor().getRGB());
             }
         }
-        container.setBufferedImage(bufferedImage);
         return container;
     }
 }

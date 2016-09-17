@@ -27,9 +27,12 @@ public class RGBPoint extends RGB {
      * @return point negative
      */
     public void negative(){
-        setRed(255-getRed());
-        setGreen(255-getGreen());
-        setBlue(255-getBlue());
+        int r=getRed();
+        int b=getBlue();
+        int g=getGreen();
+        setRed(255-r);
+        setGreen(255-g);
+        setBlue(255-b);
     }
 
     /**
@@ -37,7 +40,10 @@ public class RGBPoint extends RGB {
      * @return point grey scale
      */
     public void greyScale(){
-        
+        int sum=(getRed()+getGreen()+getBlue())/3;
+        setRed(sum);
+        setGreen(sum);
+        setBlue(sum);
     }
 
     /**
@@ -46,7 +52,17 @@ public class RGBPoint extends RGB {
      * @return sepia point
      */
     public void sepia(int factor){
-
+        greyScale();
+        int r=getRed()+2*factor;
+        int g=getGreen()+factor;
+        if(r>255){
+            r=255;
+        }
+        if(g>255){
+            g=255;
+        }
+        setRed(r);
+        setGreen(g);
     }
 
     /**
