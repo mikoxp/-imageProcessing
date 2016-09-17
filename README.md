@@ -1,13 +1,13 @@
 # Image Progressing
-##Basic information
+## Basic information
 + Language: JAVA
 + Version: 8
 + Framework: FX(later)
 + Ide: idea intellij
 + Test: JUnit4
-##Coordinate
+## Coordinate
 + first :Width, second: Height
-##Point Transformation
+## Point Transformation
 + negative
 + grey scale
 + sepia
