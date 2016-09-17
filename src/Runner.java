@@ -27,9 +27,9 @@ public class Runner {
             ic = imageCreator.createEmptyBMP("img/empty", 1000, 1000);
             ImageFileManager.saveForDisk(ic);
             //to postscript
-            ImageContainer imageContainer = ImageFileManager.loadFromDisk(path);
-            ImageToPostscriptConverter imageToPostscriptConverter = new ImageToPostscriptConverter();
-            imageToPostscriptConverter.convert(imageContainer);
+//            ImageContainer imageContainer = ImageFileManager.loadFromDisk(path);
+//            ImageToPostscriptConverter imageToPostscriptConverter = new ImageToPostscriptConverter();
+//            imageToPostscriptConverter.convert(imageContainer);
         } catch (IOException e) {
             e.printStackTrace();
         }
