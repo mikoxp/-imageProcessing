@@ -9,6 +9,15 @@ import java.awt.*;
  */
 public class RGBPoint extends RGB {
     /**
+     * @param red   red 0..255
+     * @param green green 0..255
+     * @param blue  blue 0..255
+     */
+    public RGBPoint(int red, int green, int blue) {
+        super(red, green, blue);
+    }
+
+    /**
      * @param color color
      */
     public RGBPoint(Color color) {

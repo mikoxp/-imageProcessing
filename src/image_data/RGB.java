@@ -13,6 +13,15 @@ public class RGB {
     private int blue;
 
     /**
+     *
+     */
+    public RGB() {
+        red = 0;
+        green = 0;
+        blue = 0;
+    }
+
+    /**
      * @param red   red 0..255
      * @param green green 0..255
      * @param blue  blue 0..255
@@ -92,5 +101,14 @@ public class RGB {
         result = 31 * result + green;
         result = 31 * result + blue;
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "RGB{" +
+                "red=" + red +
+                ", green=" + green +
+                ", blue=" + blue +
+                '}';
     }
 }

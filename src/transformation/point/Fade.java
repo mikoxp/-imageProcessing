@@ -22,7 +22,7 @@ public class Fade {
      * @param blue blue
      * @param green green
      */
-    public Fade(boolean red, boolean blue, boolean green) {
+    public Fade(boolean red, boolean green, boolean blue) {
         this.red = red;
         this.blue = blue;
         this.green = green;
@@ -50,5 +50,14 @@ public class Fade {
 
     public void setGreen(boolean green) {
         this.green = green;
+    }
+
+    @Override
+    public String toString() {
+        return "Fade{" +
+                "red=" + red +
+                ", blue=" + blue +
+                ", green=" + green +
+                '}';
     }
 }
