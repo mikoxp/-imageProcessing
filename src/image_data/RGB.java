@@ -65,4 +65,25 @@ public class RGB {
     public void setBlue(int blue) {
         this.blue = blue;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        RGB rgb = (RGB) o;
+
+        if (red != rgb.red) return false;
+        if (green != rgb.green) return false;
+        return blue == rgb.blue;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = red;
+        result = 31 * result + green;
+        result = 31 * result + blue;
+        return result;
+    }
 }
