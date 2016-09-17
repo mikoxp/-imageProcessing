@@ -8,9 +8,9 @@ import java.awt.*;
  * @author moles
  */
 public class RGB {
-    int red;
-    int green;
-    int blue;
+    private int red;
+    private int green;
+    private int blue;
 
     /**
      * @param red   red
