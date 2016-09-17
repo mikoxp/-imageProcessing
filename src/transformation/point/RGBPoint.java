@@ -71,6 +71,15 @@ public class RGBPoint extends RGB {
      * @return point with fade
      */
     public void fadeColor(Fade fade){
+        if(fade.isRed()){
+            setRed(0);
+        }
+        if(fade.isGreen()){
+            setGreen(0);
+        }
+        if(fade.isBlue()){
+            setBlue(0);
+        }
 
     }
 }
