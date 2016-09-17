@@ -13,11 +13,14 @@ public class RGB {
     private int blue;
 
     /**
-     * @param red   red
-     * @param green green
-     * @param blue  blue
+     * @param red   red 0..255
+     * @param green green 0..255
+     * @param blue  blue 0..255
      */
     public RGB(int red, int green, int blue) {
+        if(red<0||green<0||blue<0){
+            throw new IllegalArgumentException();
+        }
         this.red = red;
         this.green = green;
         this.blue = blue;
@@ -27,9 +30,7 @@ public class RGB {
      * @param color color
      */
     public RGB(Color color) {
-        this.red = color.getRed();
-        this.green = color.getGreen();
-        this.blue = color.getBlue();
+        this(color.getRed(),color.getGreen(),color.getBlue());
     }
 
     /**
@@ -41,7 +42,13 @@ public class RGB {
         this.green = color.getGreen();
         this.blue = color.getBlue();
     }
-
+    public Color getColor(){
+        float r=(float)red/255;
+        float g=(float)green/255;
+        float b=(float)blue/255;
+        Color color=new Color(r,g,b);
+        return color;
+    }
     public int getRed() {
         return red;
     }
