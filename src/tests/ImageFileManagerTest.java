@@ -23,7 +23,7 @@ public class ImageFileManagerTest {
         format = ImageFileManager.extractFormat(pathPng);
         Assert.assertEquals("png", format);
     }
-
+    @Test
     public void extractFormat_pathIsNotRecognise_bmpFormat() {
         String format;
         String path = "img/lena.txt";
