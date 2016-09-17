@@ -14,17 +14,14 @@ public class Runner {
         try {
             //open image
             ImageContainer ic = ImageFileManager.loadFromDisk(path);
-            System.out.println("Path: " + ic.getFilePath());
-            System.out.println("Format: " + ic.getImageFormat());
-            System.out.println("Width: " + ic.getWidth());
-            System.out.println("Height: " + ic.getHeight());
             ic.setImageFormat(ImageFormat.PNG);
             ImageFileManager.saveForDisk(ic);
             //create image
             ImageCreator imageCreator = new ImageCreator();
-            ic = imageCreator.createEmptyPNG("img/empty", 1000, 1000);
+            ImageContainer ic2;
+            ic2 = imageCreator.createEmptyPNG("img/empty", 1000, 1000);
             ImageFileManager.saveForDisk(ic);
-            ic = imageCreator.createEmptyBMP("img/empty", 1000, 1000);
+            ic2 = imageCreator.createEmptyBMP("img/empty", 1000, 1000);
             ImageFileManager.saveForDisk(ic);
             //to postscript
 //            ImageContainer imageContainer = ImageFileManager.loadFromDisk(path);
