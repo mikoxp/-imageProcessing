@@ -27,6 +27,7 @@ public class TransformationMatrix {
      * @param bufferedImage buffor with image
      */
     public TransformationMatrix(int x, int y, int size, BufferedImage bufferedImage) {
+        dataValidate(x,y,size,bufferedImage);
         this.size = size;
         this.x = x;
         this.y = y;
@@ -35,39 +36,39 @@ public class TransformationMatrix {
         this.columns=new ArrayList<RGB[]>();
         fillMatrix();
     }
-
+    private void dataValidate(int x, int y, int size, BufferedImage bufferedImage) throws IllegalArgumentException {
+        if(x<0 || y<0){
+            throw new IllegalArgumentException("negative coordinates");
+        }
+        if(x>=bufferedImage.getWidth() || y>=bufferedImage.getHeight()){
+            throw new IllegalArgumentException("coordinates is not in image");
+        }
+        if(size%2==0){
+            throw new IllegalArgumentException("size must be odd");
+        }
+    }
     /**
      * fill matrix
      */
     private void fillMatrix(){
         int startX=x-shift;
         int startY=y-shift;
-        int endX=x+shift;
-        int endY=y+shift;
-        int index;
         RGB[] column;
         int color;
-        for(j=startY;j<=endY;j++){
-            index=0;
+        for(i=0;i<size;i++){
             column=new RGB[size];
-            for(i=startX;i<=endX;i++){
+            for(j=0;j<size;j++){
                 try{
-                    color=bufferedImage.getRGB(i,j);
-                    column[index]=new RGB(color);
+                    color=bufferedImage.getRGB(startX,startY);
+                    column[j]=new RGB(color);
                 }catch (ArrayIndexOutOfBoundsException e){
-                    column[index]=null;
+                    column[j]=null;
                 }
-                index++;
+                startX++;
             }
+            startY++;
             columns.add(column);
         }
-    }
-    /**
-     * add column
-     * @param column column
-     */
-    private void addColumn(RGB[] column){
-        columns.add(column);
     }
 
     /**
@@ -80,8 +81,22 @@ public class TransformationMatrix {
     /**
      * moves the value of one column
      */
-    private void nextMatrix(){
-
+    public void nextMatrix(){
+        RGB[] column=new RGB[size];
+        int color;
+        removeFirstColumn();
+        y++;
+        int startX=x-shift;
+        for(j=0;j<size;j++){
+            try{
+                color=bufferedImage.getRGB(startX,y+1);
+                column[j]=new RGB(color);
+            }catch (ArrayIndexOutOfBoundsException e){
+                column[j]=null;
+            }
+            startX++;
+        }
+        columns.add(column);
     }
 
     public int getSize() {
