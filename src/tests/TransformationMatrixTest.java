@@ -1,14 +1,11 @@
 package tests;
 
-import image_data.ImageContainer;
-import image_data.ImageCreator;
 import image_data.RGB;
 import org.junit.Test;
-import transformation.TransformationMatrix;
+import transformation.context.TransformationMatrix;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.*;
