@@ -101,6 +101,6 @@ public class TransformationMatrixTest {
             assertArrayEquals(rgbs.get(i),matrix.getColumns().get(i));
         }
     }
-    
+
 
 }

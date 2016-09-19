@@ -61,6 +61,9 @@ public class RGBPoint extends RGB {
      * @return sepia point
      */
     public void sepia(int factor){
+        if(factor<20 || factor>40){
+            throw new IllegalArgumentException("Factor must be between 20 and 40");
+        }
         greyScale();
         int r=getRed()+2*factor;
         int g=getGreen()+factor;

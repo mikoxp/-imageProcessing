@@ -37,7 +37,7 @@ public class Runner {
             ImageFileManager.saveForDisk(pointImage);
             //sepia
             imageContainer = ImageFileManager.loadFromDisk(path);
-            pointImage=pointTranManager.sepia(imageContainer,15);
+            pointImage=pointTranManager.sepia(imageContainer,25);
             pointImage.setFilePath(pointImage.getFilePath()+"_sepia");
             ImageFileManager.saveForDisk(pointImage);
             //fade red
