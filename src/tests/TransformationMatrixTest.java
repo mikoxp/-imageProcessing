@@ -16,6 +16,7 @@ import static org.junit.Assert.*;
  */
 public class TransformationMatrixTest {
     private final int smallSize=3;
+    private final int bigSize=5;
    private ImageToTest imageToTest=new ImageToTest();
     @Test(expected = IllegalArgumentException.class)
     public void constructor_sizeIsEven_IllegalArgumentException(){
@@ -98,6 +99,65 @@ public class TransformationMatrixTest {
             assertArrayEquals(rgbs.get(i),matrix.getColumns().get(i));
         }
     }
-
+    @Test
+    public void getColumns_AllfillFileds_numberOfFiled(){
+        BufferedImage bufferedImage=imageToTest.getBlackImageToTest();
+        TransformationMatrix matrix=new TransformationMatrix(1,1,smallSize,bufferedImage);
+        List<RGB[]> columns=matrix.getColumns();
+        int i=0;
+        for(RGB[] c:columns){
+            for(RGB r:c){
+                if(r!=null){
+                    i++;
+                }
+            }
+        }
+       assertEquals(9,i);
+    }
+    @Test
+    public void getColumns_AllfillFiledsBiggest_numberOfFiled(){
+        BufferedImage bufferedImage=imageToTest.getBlackImageToTest();
+        TransformationMatrix matrix=new TransformationMatrix(2,2,bigSize,bufferedImage);
+        List<RGB[]> columns=matrix.getColumns();
+        int i=0;
+        for(RGB[] c:columns){
+            for(RGB r:c){
+                if(r!=null){
+                    i++;
+                }
+            }
+        }
+        assertEquals(25,i);
+    }
+    @Test
+    public void getColumns_incompletefillFileds_numberOfFiled(){
+        BufferedImage bufferedImage=imageToTest.getBlackImageToTest();
+        TransformationMatrix matrix=new TransformationMatrix(0,0,smallSize,bufferedImage);
+        List<RGB[]> columns=matrix.getColumns();
+        int i=0;
+        for(RGB[] c:columns){
+            for(RGB r:c){
+                if(r!=null){
+                    i++;
+                }
+            }
+        }
+        assertEquals(4,i);
+    }
+    @Test
+    public void getColumns_incompletefillFiledsBiggest_numberOfFiled(){
+        BufferedImage bufferedImage=imageToTest.getBlackImageToTest();
+        TransformationMatrix matrix=new TransformationMatrix(0,0,bigSize,bufferedImage);
+        List<RGB[]> columns=matrix.getColumns();
+        int i=0;
+        for(RGB[] c:columns){
+            for(RGB r:c){
+                if(r!=null){
+                    i++;
+                }
+            }
+        }
+        assertEquals(9,i);
+    }
 
 }

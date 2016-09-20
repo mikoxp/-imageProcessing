@@ -53,18 +53,20 @@ public class TransformationMatrix {
     private void fillMatrix(){
         int startX=x-shift;
         int startY=y-shift;
+        int actualX;
         RGB[] column;
         int color;
         for(i=0;i<size;i++){
             column=new RGB[size];
+            actualX=startX;
             for(j=0;j<size;j++){
                 try{
-                    color=bufferedImage.getRGB(startX,startY);
+                    color=bufferedImage.getRGB(actualX,startY);
                     column[j]=new RGB(color);
                 }catch (ArrayIndexOutOfBoundsException e){
                     column[j]=null;
                 }
-                startX++;
+                actualX++;
             }
             startY++;
             columns.add(column);
