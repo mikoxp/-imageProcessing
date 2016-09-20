@@ -18,4 +18,5 @@ public class LineFilterMatrix extends TransformationMatrix{
     public LineFilterMatrix(int x, int y, int size, BufferedImage bufferedImage) {
         super(x, y, size, bufferedImage);
     }
+
 }
