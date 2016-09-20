@@ -159,5 +159,23 @@ public class TransformationMatrixTest {
         }
         assertEquals(9,i);
     }
+    @Test
+    public void getElement_chooseElement_ElementRGB(){
+        BufferedImage bufferedImage=imageToTest.getValueImageToTest();
+        TransformationMatrix matrix=new TransformationMatrix(1,1,smallSize,bufferedImage);
+        assertEquals(new RGB(5,5,5),matrix.getElement(0,1));
+    }
+    @Test(expected = IllegalArgumentException.class)
+    public void getElement_incorectCoordinate_IllegalArgumentException(){
+        BufferedImage bufferedImage=imageToTest.getValueImageToTest();
+        TransformationMatrix matrix=new TransformationMatrix(1,1,smallSize,bufferedImage);
+        matrix.getElement(0,5);
+    }
+    @Test(expected = IllegalArgumentException.class)
+    public void getElement_negativeCoordinate_IllegalArgumentException(){
+        BufferedImage bufferedImage=imageToTest.getValueImageToTest();
+        TransformationMatrix matrix=new TransformationMatrix(1,1,smallSize,bufferedImage);
+        matrix.getElement(0,-5);
+    }
 
 }

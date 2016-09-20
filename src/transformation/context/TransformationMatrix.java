@@ -109,6 +109,19 @@ public class TransformationMatrix {
         return columns;
     }
 
+    /**
+     *
+     * @param line line
+     * @param column column
+     * @return element
+     */
+    public RGB getElement(int line,int column){
+        if(line<0 || line>=size || column<0|| column>=size){
+            throw new IllegalArgumentException("Incorect Coordinate");
+        }
+        return columns.get(column)[line];
+    }
+
     public BufferedImage getBufferedImage() {
         return bufferedImage;
     }
