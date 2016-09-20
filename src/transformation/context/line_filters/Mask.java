@@ -25,14 +25,14 @@ public class Mask {
 
     /**
      *
-     * @param width width
-     * @param height height
+     * @param line line
+     * @param column column
      * @return element mask
      */
-    public int getElement(int width,int height){
-        if(width>=size || height>=size){
+    public int getElement(int line, int column) {
+        if (line >= size || column >= size) {
             throw new IllegalArgumentException("wrong coordinate");
         }
-        return values[width][height];
+        return values[line][column];
     }
 }
