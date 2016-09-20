@@ -94,13 +94,13 @@ public class NonLinearFilterMatrix extends TransformationMatrix{
         int b=0;
         int i=colors.get(0).size();
         if(i%2==0){
-            r=(colors.get(0).get(i/2)+colors.get(0).get(i/2+1))/2;
-            g=(colors.get(1).get(i/2)+colors.get(0).get(i/2+1))/2;
-            b=(colors.get(2).get(i/2)+colors.get(0).get(i/2+1))/2;
+            r=(colors.get(0).get(i/2-1)+colors.get(0).get(i/2))/2;
+            g=(colors.get(1).get(i/2-1)+colors.get(0).get(i/2))/2;
+            b=(colors.get(2).get(i/2-1)+colors.get(0).get(i/2))/2;
         }else{
-            r=colors.get(0).get(i/2+1);
-            g=colors.get(1).get(i/2+1);
-            b=colors.get(2).get(i/2+1);
+            r=colors.get(0).get(i/2);
+            g=colors.get(1).get(i/2);
+            b=colors.get(2).get(i/2);
         }
         rgb=new RGB(r,g,b);
         return rgb;
