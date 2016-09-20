@@ -12,28 +12,28 @@ import java.util.List;
  */
 public class TransformationMatrix {
     private int size;//size matrix
-    private List<RGB[]> columns;
-    private int x; //x-position
-    private int y; //y-position
+    private List<RGB[]> rGBcolumns;
+    private int line; //x-position
+    private int column; //y-position
     private BufferedImage bufferedImage; //image
     private int shift;
     private int i,j;
 
     /**
      *
-     * @param x x-position
-     * @param y y-position
+     * @param line line-position
+     * @param column column-position
      * @param size matrix size
      * @param bufferedImage buffor with image
      */
-    public TransformationMatrix(int x, int y, int size, BufferedImage bufferedImage) {
-        dataValidate(x,y,size,bufferedImage);
+    public TransformationMatrix(int line, int column, int size, BufferedImage bufferedImage) {
+        dataValidate(line, column, size, bufferedImage);
         this.size = size;
-        this.x = x;
-        this.y = y;
+        this.line = line;
+        this.column = column;
         this.shift=size/2;
         this.bufferedImage=bufferedImage;
-        this.columns=new ArrayList<RGB[]>();
+        this.rGBcolumns = new ArrayList<RGB[]>();
         fillMatrix();
     }
     private void dataValidate(int x, int y, int size, BufferedImage bufferedImage) throws IllegalArgumentException {
@@ -51,8 +51,8 @@ public class TransformationMatrix {
      * fill matrix
      */
     private void fillMatrix(){
-        int startX=x-shift;
-        int startY=y-shift;
+        int startX = line - shift;
+        int startY = column - shift;
         int actualX;
         RGB[] column;
         int color;
@@ -69,7 +69,7 @@ public class TransformationMatrix {
                 actualX++;
             }
             startY++;
-            columns.add(column);
+            rGBcolumns.add(column);
         }
     }
 
@@ -77,36 +77,36 @@ public class TransformationMatrix {
      * remove first column
      */
     private void removeFirstColumn(){
-        columns.remove(0);
+        rGBcolumns.remove(0);
     }
 
     /**
      * moves the value of one column
      */
     public void nextMatrix(){
-        RGB[] column=new RGB[size];
+        RGB[] rgbColumn = new RGB[size];
         int color;
         removeFirstColumn();
-        y++;
-        int startX=x-shift;
+        column++;
+        int startX = line - shift;
         for(j=0;j<size;j++){
             try{
-                color=bufferedImage.getRGB(startX,y+1);
-                column[j]=new RGB(color);
+                color = bufferedImage.getRGB(startX, column + 1);
+                rgbColumn[j] = new RGB(color);
             }catch (ArrayIndexOutOfBoundsException e){
-                column[j]=null;
+                rgbColumn[j] = null;
             }
             startX++;
         }
-        columns.add(column);
+        rGBcolumns.add(rgbColumn);
     }
 
     public int getSize() {
         return size;
     }
 
-    public List<RGB[]> getColumns() {
-        return columns;
+    public List<RGB[]> getcolumns() {
+        return rGBcolumns;
     }
 
     /**
@@ -119,7 +119,7 @@ public class TransformationMatrix {
         if(line<0 || line>=size || column<0|| column>=size){
             throw new IllegalArgumentException("Incorect Coordinate");
         }
-        return columns.get(column)[line];
+        return rGBcolumns.get(column)[line];
     }
 
     public BufferedImage getBufferedImage() {
@@ -134,14 +134,14 @@ public class TransformationMatrix {
         TransformationMatrix that = (TransformationMatrix) o;
 
         if (size != that.size) return false;
-        return columns.equals(that.columns);
+        return rGBcolumns.equals(that.rGBcolumns);
 
     }
 
     @Override
     public int hashCode() {
         int result = size;
-        result = 31 * result + columns.hashCode();
+        result = 31 * result + rGBcolumns.hashCode();
         return result;
     }
 
@@ -149,9 +149,9 @@ public class TransformationMatrix {
     public String toString() {
         return "TransformationMatrix{" +
                 "size=" + size +
-                ", columns=" + columns +
-                ", x=" + x +
-                ", y=" + y +
+                ", rGBcolumns=" + rGBcolumns +
+                ", line=" + line +
+                ", y=" + column +
                 '}';
     }
 }

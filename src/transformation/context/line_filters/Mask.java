@@ -23,6 +23,10 @@ public class Mask {
         size=values.length;
     }
 
+    public int getSize() {
+        return size;
+    }
+
     /**
      *
      * @param line line

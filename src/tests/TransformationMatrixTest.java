@@ -8,7 +8,8 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by moles on 2016-09-18.
@@ -55,7 +56,7 @@ public class TransformationMatrixTest {
         rgbs.add(c2);
         rgbs.add(c3);
         for(int i=0;i<rgbs.size();i++){
-            assertArrayEquals(rgbs.get(i),matrix.getColumns().get(i));
+            assertArrayEquals(rgbs.get(i), matrix.getcolumns().get(i));
         }
     }
     @Test
@@ -75,7 +76,7 @@ public class TransformationMatrixTest {
         rgbs.add(c2);
         rgbs.add(c3);
         for(int i=0;i<rgbs.size();i++){
-            assertArrayEquals(rgbs.get(i),matrix.getColumns().get(i));
+            assertArrayEquals(rgbs.get(i), matrix.getcolumns().get(i));
         }
     }
     @Test
@@ -96,14 +97,14 @@ public class TransformationMatrixTest {
         rgbs.add(c2);
         rgbs.add(c3);
         for(int i=0;i<rgbs.size();i++){
-            assertArrayEquals(rgbs.get(i),matrix.getColumns().get(i));
+            assertArrayEquals(rgbs.get(i), matrix.getcolumns().get(i));
         }
     }
     @Test
     public void getColumns_AllfillFileds_numberOfFiled(){
         BufferedImage bufferedImage=imageToTest.getBlackImageToTest();
         TransformationMatrix matrix=new TransformationMatrix(1,1,smallSize,bufferedImage);
-        List<RGB[]> columns=matrix.getColumns();
+        List<RGB[]> columns = matrix.getcolumns();
         int i=0;
         for(RGB[] c:columns){
             for(RGB r:c){
@@ -118,7 +119,7 @@ public class TransformationMatrixTest {
     public void getColumns_AllfillFiledsBiggest_numberOfFiled(){
         BufferedImage bufferedImage=imageToTest.getBlackImageToTest();
         TransformationMatrix matrix=new TransformationMatrix(2,2,bigSize,bufferedImage);
-        List<RGB[]> columns=matrix.getColumns();
+        List<RGB[]> columns = matrix.getcolumns();
         int i=0;
         for(RGB[] c:columns){
             for(RGB r:c){
@@ -133,7 +134,7 @@ public class TransformationMatrixTest {
     public void getColumns_incompletefillFileds_numberOfFiled(){
         BufferedImage bufferedImage=imageToTest.getBlackImageToTest();
         TransformationMatrix matrix=new TransformationMatrix(0,0,smallSize,bufferedImage);
-        List<RGB[]> columns=matrix.getColumns();
+        List<RGB[]> columns = matrix.getcolumns();
         int i=0;
         for(RGB[] c:columns){
             for(RGB r:c){
@@ -148,7 +149,7 @@ public class TransformationMatrixTest {
     public void getColumns_incompletefillFiledsBiggest_numberOfFiled(){
         BufferedImage bufferedImage=imageToTest.getBlackImageToTest();
         TransformationMatrix matrix=new TransformationMatrix(0,0,bigSize,bufferedImage);
-        List<RGB[]> columns=matrix.getColumns();
+        List<RGB[]> columns = matrix.getcolumns();
         int i=0;
         for(RGB[] c:columns){
             for(RGB r:c){

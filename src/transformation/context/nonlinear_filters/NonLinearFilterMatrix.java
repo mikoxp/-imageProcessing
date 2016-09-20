@@ -1,7 +1,6 @@
 package transformation.context.nonlinear_filters;
 
 import image_data.RGB;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import transformation.context.TransformationMatrix;
 
 import java.awt.image.BufferedImage;
@@ -35,7 +34,7 @@ public class NonLinearFilterMatrix extends TransformationMatrix{
         List<Integer> red=new ArrayList<Integer>();
         List<Integer> green=new ArrayList<Integer>();
         List<Integer> blue=new ArrayList<Integer>();
-        for(RGB[] column:getColumns()){
+        for (RGB[] column : getcolumns()) {
             for(RGB i:column){
                 if(i==null){
                     continue;

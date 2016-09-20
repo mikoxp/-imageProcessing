@@ -6,7 +6,7 @@
 + Ide: idea intellij
 + Test: JUnit4
 # Coordinate
-+ first :Width, second: Height
++ first :Width(column), second: Height(line)
 # Point Transformation
 + negative
 + grey scale
