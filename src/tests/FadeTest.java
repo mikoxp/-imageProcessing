@@ -16,5 +16,4 @@ public class FadeTest {
         Fade f2=new Fade(false,false,false);
         assertEquals(f2,f1);
     }
-
 }
