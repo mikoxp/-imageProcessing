@@ -10,15 +10,15 @@ import java.awt.image.BufferedImage;
  */
 public class ImageContainer {
     private BufferedImage bufferedImage;
-    private int width;
-    private int height;
+    private int numberOfColumn;
+    private int numberOfLine;
     private String filePath;
     private String imageFormat;
 
     public ImageContainer(BufferedImage bufferedImage, String filePath, String imageFormat) {
         this.bufferedImage = bufferedImage;
-        this.width = bufferedImage.getWidth();
-        this.height = bufferedImage.getHeight();
+        this.numberOfColumn = bufferedImage.getWidth();
+        this.numberOfLine = bufferedImage.getHeight();
         this.filePath = filePath;
         this.imageFormat = imageFormat;
     }
@@ -31,20 +31,20 @@ public class ImageContainer {
         this.bufferedImage = bufferedImage;
     }
 
-    public int getWidth() {
-        return width;
+    public int getNumberOfColumn() {
+        return numberOfColumn;
     }
 
-    public void setWidth(int width) {
-        this.width = width;
+    public void setNumberOfColumn(int numberOfColumn) {
+        this.numberOfColumn = numberOfColumn;
     }
 
-    public int getHeight() {
-        return height;
+    public int getNumberOfLine() {
+        return numberOfLine;
     }
 
-    public void setHeight(int height) {
-        this.height = height;
+    public void setNumberOfLine(int numberOfLine) {
+        this.numberOfLine = numberOfLine;
     }
 
     public String getFilePath() {
