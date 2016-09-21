@@ -20,8 +20,8 @@ public class PointTransformationManager {
     public ImageContainer negative(ImageContainer container){
         container.setFilePath(container.getFilePath() + "_negative");
         BufferedImage bufferedImage = container.getBufferedImage();
-        for(i=0;i<container.getWidth();i++){
-            for(j=0;j<container.getHeight();j++){
+        for(i=0; i<container.getNumberOfColumn(); i++){
+            for(j=0; j<container.getNumberOfLine(); j++){
                 rgbPoint=new RGBPoint(bufferedImage.getRGB(i,j));
                 rgbPoint.negative();
                 bufferedImage.setRGB(i,j,rgbPoint.getColor().getRGB());
@@ -38,8 +38,8 @@ public class PointTransformationManager {
     public ImageContainer greyScale(ImageContainer container){
         container.setFilePath(container.getFilePath() + "_greyScale");
         BufferedImage bufferedImage = container.getBufferedImage();
-        for(i=0;i<container.getWidth();i++){
-            for(j=0;j<container.getHeight();j++){
+        for(i=0; i<container.getNumberOfColumn(); i++){
+            for(j=0; j<container.getNumberOfLine(); j++){
                 rgbPoint=new RGBPoint(bufferedImage.getRGB(i,j));
                 rgbPoint.greyScale();
                 bufferedImage.setRGB(i,j,rgbPoint.getColor().getRGB());
@@ -57,8 +57,8 @@ public class PointTransformationManager {
     public ImageContainer sepia(ImageContainer container, int factor){
         container.setFilePath(container.getFilePath() + "_sepia" + factor);
         BufferedImage bufferedImage = container.getBufferedImage();
-        for(i=0;i<container.getWidth();i++){
-            for(j=0;j<container.getHeight();j++){
+        for(i=0; i<container.getNumberOfColumn(); i++){
+            for(j=0; j<container.getNumberOfLine(); j++){
                 rgbPoint=new RGBPoint(bufferedImage.getRGB(i,j));
                 rgbPoint.sepia(factor);
                 bufferedImage.setRGB(i,j,rgbPoint.getColor().getRGB());
@@ -76,8 +76,8 @@ public class PointTransformationManager {
     public ImageContainer fadeColor(ImageContainer container,Fade fade){
         container.setFilePath(container.getFilePath() + "_fade" + fade.isRed() + fade.isGreen() + fade.isBlue());
         BufferedImage bufferedImage = container.getBufferedImage();
-        for(i=0;i<container.getWidth();i++){
-            for(j=0;j<container.getHeight();j++){
+        for(i=0; i<container.getNumberOfColumn(); i++){
+            for(j=0; j<container.getNumberOfLine(); j++){
                 rgbPoint=new RGBPoint(bufferedImage.getRGB(i,j));
                 rgbPoint.fadeColor(fade);
                 bufferedImage.setRGB(i,j,rgbPoint.getColor().getRGB());

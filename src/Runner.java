@@ -14,14 +14,6 @@ public class Runner {
         ImageContainer pointImage;
         System.out.println("IO Start");
         try {
-
-            //create image
-            ImageCreator imageCreator = new ImageCreator();
-            ImageContainer ic2;
-            ic2 = imageCreator.createEmptyPNG("img/empty", 1000, 1000);
-            ImageFileManager.saveForDisk(ic2);
-            ic2 = imageCreator.createEmptyBMP("img/empty", 1000, 1000);
-            ImageFileManager.saveForDisk(ic2);
             //negative
             ImageContainer imageContainer = ImageFileManager.loadFromDisk(path);
             pointImage=pointTranManager.negative(imageContainer);
@@ -49,6 +41,8 @@ public class Runner {
             fade=new Fade(false,false,true);
             pointImage=pointTranManager.fadeColor(imageContainer,fade);
             ImageFileManager.saveForDisk(pointImage);
+            //High filter
+
         } catch (IOException e) {
             e.printStackTrace();
         }
