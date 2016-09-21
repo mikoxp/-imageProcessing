@@ -1,6 +1,7 @@
 package transformation.context.line_filters;
 
 import transformation.context.TransformationMatrix;
+import transformation.context.line_filters.normalization.Normalizer;
 
 import java.awt.image.BufferedImage;
 
@@ -9,14 +10,25 @@ import java.awt.image.BufferedImage;
  * @author moles
  */
 public class LineFilterMatrix extends TransformationMatrix{
+
+    private Mask mask;
+    private Normalizer normalizer;
+
     /**
-     * @param x             x-position
-     * @param y             y-position
-     * @param size          matrix size
-     * @param bufferedImage buffor with image
+     *
+     * @param line line point
+     * @param column column point
+     * @param bufferedImage image
+     * @param mask mask
+     * @param normalizer modiule normalization
      */
-    public LineFilterMatrix(int x, int y, int size, BufferedImage bufferedImage) {
-        super(x, y, size, bufferedImage);
+    public LineFilterMatrix(int line, int column,BufferedImage bufferedImage, Mask mask, Normalizer normalizer) {
+        super(line, column,mask.getSize(), bufferedImage);
+        if(normalizer==null){
+            throw new NullPointerException("Normalizer is null");
+        }
+        this.mask = mask;
+        this.normalizer = normalizer;
     }
 
 }

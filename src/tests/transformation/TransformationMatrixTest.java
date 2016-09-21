@@ -19,6 +19,10 @@ public class TransformationMatrixTest {
     private final int smallSize=3;
     private final int bigSize=5;
    private ImageToTest imageToTest=new ImageToTest();
+    @Test(expected = NullPointerException.class)
+    public void constructor_BufforedImageIsNull_NullPointerException(){
+        new TransformationMatrix(0,0,3,null);
+    }
     @Test(expected = IllegalArgumentException.class)
     public void constructor_sizeIsEven_IllegalArgumentException(){
         new TransformationMatrix(15,15,2,new BufferedImage(100,100,BufferedImage.TYPE_INT_RGB));

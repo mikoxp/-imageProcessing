@@ -27,6 +27,9 @@ public class TransformationMatrix {
      * @param bufferedImage buffor with image
      */
     public TransformationMatrix(int line, int column, int size, BufferedImage bufferedImage) {
+        if(bufferedImage==null){
+            throw new NullPointerException("BufforedIamge is null");
+        }
         dataValidate(line, column, size, bufferedImage);
         this.size = size;
         this.line = line;
