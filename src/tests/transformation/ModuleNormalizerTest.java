@@ -1,4 +1,4 @@
-package tests;
+package tests.transformation;
 
 import image_data.RGB;
 import org.junit.Test;

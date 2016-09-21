@@ -1,4 +1,4 @@
-package tests;
+package tests.transformation;
 
 import image_data.ImageContainer;
 import image_data.ImageCreator;

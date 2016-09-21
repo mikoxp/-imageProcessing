@@ -1,4 +1,4 @@
-package tests;
+package tests.io;
 
 
 import com.sun.javaws.exceptions.InvalidArgumentException;
