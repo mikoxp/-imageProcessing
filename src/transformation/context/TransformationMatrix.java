@@ -17,6 +17,7 @@ public class TransformationMatrix {
     private int column; //y-position
     private BufferedImage bufferedImage; //image
     private int shift;
+    private int lastColumn;
     private int i,j;
 
     /**
@@ -26,11 +27,12 @@ public class TransformationMatrix {
      * @param size matrix size
      * @param bufferedImage buffor with image
      */
-    public TransformationMatrix(int line, int column, int size, BufferedImage bufferedImage) {
+    public TransformationMatrix(int column, int line, int size, BufferedImage bufferedImage) {
         if(bufferedImage==null){
             throw new NullPointerException("BufforedIamge is null");
         }
         dataValidate(line, column, size, bufferedImage);
+        this.lastColumn=bufferedImage.getWidth()-1;
         this.size = size;
         this.line = line;
         this.column = column;
@@ -39,11 +41,11 @@ public class TransformationMatrix {
         this.rGBcolumns = new ArrayList<RGB[]>();
         fillMatrix();
     }
-    private void dataValidate(int x, int y, int size, BufferedImage bufferedImage) throws IllegalArgumentException {
-        if(x<0 || y<0){
+    private void dataValidate(int line, int column, int size, BufferedImage bufferedImage) throws IllegalArgumentException {
+        if(line<0 || column<0){
             throw new IllegalArgumentException("negative coordinates");
         }
-        if(x>=bufferedImage.getWidth() || y>=bufferedImage.getHeight()){
+        if(line>=bufferedImage.getHeight() || column>=bufferedImage.getWidth()){
             throw new IllegalArgumentException("coordinates is not in image");
         }
         if(size%2==0){
@@ -54,25 +56,25 @@ public class TransformationMatrix {
      * fill matrix
      */
     private void fillMatrix(){
-        int startX = line - shift;
-        int startY = column - shift;
-        int actualX;
-        RGB[] column;
+        RGB[] oneRGBColumn;
         int color;
+        int startLine=line-shift;
+        int startColumn=column-shift;
+        int actualLine;
         for(i=0;i<size;i++){
-            column=new RGB[size];
-            actualX=startX;
+            oneRGBColumn=new RGB[size];
+            actualLine=startLine;
             for(j=0;j<size;j++){
-                try{
-                    color=bufferedImage.getRGB(actualX,startY);
-                    column[j]=new RGB(color);
+                try {
+                    color = bufferedImage.getRGB(startColumn, actualLine);
+                    oneRGBColumn[j] = new RGB(color);
                 }catch (ArrayIndexOutOfBoundsException e){
-                    column[j]=null;
+                    oneRGBColumn[j]=null;
                 }
-                actualX++;
+                actualLine++;
             }
-            startY++;
-            rGBcolumns.add(column);
+            startColumn++;
+            rGBcolumns.add(oneRGBColumn);
         }
     }
 
@@ -86,7 +88,10 @@ public class TransformationMatrix {
     /**
      * moves the value of one column
      */
-    public void nextMatrix(){
+    public void moveOnColumn(){
+        if(column==lastColumn){
+            return;
+        }
         RGB[] rgbColumn = new RGB[size];
         int color;
         removeFirstColumn();
@@ -94,7 +99,7 @@ public class TransformationMatrix {
         int startX = line - shift;
         for(j=0;j<size;j++){
             try{
-                color = bufferedImage.getRGB(startX, column + 1);
+                color = bufferedImage.getRGB(column + 1,startX);
                 rgbColumn[j] = new RGB(color);
             }catch (ArrayIndexOutOfBoundsException e){
                 rgbColumn[j] = null;
