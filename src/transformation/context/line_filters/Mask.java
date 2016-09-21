@@ -10,7 +10,7 @@ public class Mask {
 
     /**
      *
-     * @param values values
+     * @param values values [line][column]
      */
     public Mask(int[][] values) {
         if(values.length!=values[0].length){
