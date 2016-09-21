@@ -2,6 +2,7 @@ package transformation.context.line_filters;
 
 import transformation.context.TransformationMatrix;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 /**
@@ -20,5 +21,8 @@ public class LowPassFilterMatrix extends TransformationMatrix {
      */
     public LowPassFilterMatrix(int line, int column, Mask mask, BufferedImage bufferedImage) {
         super(line, column, mask.getSize(), bufferedImage);
+    }
+    public Color getFiltredValue() {
+        return null;
     }
 }
