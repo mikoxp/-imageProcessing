@@ -18,6 +18,7 @@ public class PointTransformationManager {
      * @return negative iamge
      */
     public ImageContainer negative(ImageContainer container){
+        container.setFilePath(container.getFilePath() + "_negative");
         BufferedImage bufferedImage = container.getBufferedImage();
         for(i=0;i<container.getWidth();i++){
             for(j=0;j<container.getHeight();j++){
@@ -35,6 +36,7 @@ public class PointTransformationManager {
      * @return grey scale image
      */
     public ImageContainer greyScale(ImageContainer container){
+        container.setFilePath(container.getFilePath() + "_greyScale");
         BufferedImage bufferedImage = container.getBufferedImage();
         for(i=0;i<container.getWidth();i++){
             for(j=0;j<container.getHeight();j++){
@@ -53,6 +55,7 @@ public class PointTransformationManager {
      * @return sepia image
      */
     public ImageContainer sepia(ImageContainer container, int factor){
+        container.setFilePath(container.getFilePath() + "_sepia" + factor);
         BufferedImage bufferedImage = container.getBufferedImage();
         for(i=0;i<container.getWidth();i++){
             for(j=0;j<container.getHeight();j++){
@@ -71,6 +74,7 @@ public class PointTransformationManager {
      * @return faded color image
      */
     public ImageContainer fadeColor(ImageContainer container,Fade fade){
+        container.setFilePath(container.getFilePath() + "_fade" + fade.isRed() + fade.isGreen() + fade.isBlue());
         BufferedImage bufferedImage = container.getBufferedImage();
         for(i=0;i<container.getWidth();i++){
             for(j=0;j<container.getHeight();j++){
