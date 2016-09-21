@@ -6,7 +6,6 @@ import transformation.context.line_filters.Mask;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.List;
 
 /**
  * Created by moles on 20.09.2016.
@@ -73,7 +72,6 @@ public class ScalingNormalizer implements Normalizer{
      * @param mask mask
      */
     private void comparePointValue(TransformationMatrix matrix,Mask mask){
-        List<RGB[]> rbsArray=matrix.getcolumns();
         RGB rgb;
         int rSum=0;
         int gSum=0;
@@ -122,13 +120,13 @@ public class ScalingNormalizer implements Normalizer{
     public NormalizerRange getBlueRange() {
         return blueRange;
     }
+
     /**
      * @param red   redRange part color before normalization
      * @param green greenRange part color before normalization
      * @param blue  blueRange part color before normalization
      * @return Color after normalization
      */
-    @Override
     public Color normalizing(int red, int green, int blue) {
         int r=(red-redRange.getMin())*255/(redRange.getMax()-redRange.getMin());
         int g=(green-greenRange.getMin())*255/(greenRange.getMax()-greenRange.getMin());
@@ -136,5 +134,4 @@ public class ScalingNormalizer implements Normalizer{
         RGB rgb=new RGB(r,g,b);
         return rgb.getColor();
     }
-
 }

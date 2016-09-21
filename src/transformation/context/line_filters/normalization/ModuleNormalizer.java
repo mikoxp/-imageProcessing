@@ -22,8 +22,6 @@ public class ModuleNormalizer implements Normalizer{
      * @param blue  blue part color before normalization
      * @return Color after normalization
      */
-
-    @Override
     public Color normalizing(int red, int green, int blue) {
         red=Math.abs(red);
         green=Math.abs(green);
