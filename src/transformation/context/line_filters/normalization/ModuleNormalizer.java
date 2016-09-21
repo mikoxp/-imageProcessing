@@ -1,5 +1,7 @@
 package transformation.context.line_filters.normalization;
 
+import image_data.RGB;
+
 import java.awt.*;
 
 /**
@@ -7,14 +9,35 @@ import java.awt.*;
  * @author moles
  */
 public class ModuleNormalizer implements Normalizer{
+    private final int max=255;
+    /**
+     *
+     */
+    public ModuleNormalizer() {
+    }
+
     /**
      * @param red   red part color before normalization
      * @param green green part color before normalization
      * @param blue  blue part color before normalization
      * @return Color after normalization
      */
+
     @Override
     public Color normalizing(int red, int green, int blue) {
-        return null;
+        red=Math.abs(red);
+        green=Math.abs(green);
+        blue=Math.abs(blue);
+        if(red>max){
+            red=max;
+        }
+        if(green>max){
+            green=max;
+        }
+        if(blue>max){
+            blue=max;
+        }
+        RGB rgb=new RGB(red,green,blue);
+        return rgb.getColor();
     }
 }
