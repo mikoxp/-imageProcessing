@@ -96,15 +96,15 @@ public class TransformationMatrix {
         int color;
         removeFirstColumn();
         column++;
-        int startX = line - shift;
+        int startLine = line - shift;
         for(j=0;j<size;j++){
             try{
-                color = bufferedImage.getRGB(column + 1,startX);
+                color = bufferedImage.getRGB(column + 1,startLine);
                 rgbColumn[j] = new RGB(color);
             }catch (ArrayIndexOutOfBoundsException e){
                 rgbColumn[j] = null;
             }
-            startX++;
+            startLine++;
         }
         rGBcolumns.add(rgbColumn);
     }
