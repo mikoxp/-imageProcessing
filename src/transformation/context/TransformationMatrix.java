@@ -157,4 +157,12 @@ public class TransformationMatrix {
                 ", y=" + column +
                 '}';
     }
+
+    public int getLine() {
+        return line;
+    }
+
+    public int getColumn() {
+        return column;
+    }
 }

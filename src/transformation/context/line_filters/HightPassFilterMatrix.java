@@ -1,10 +1,12 @@
 package transformation.context.line_filters;
 
+import image_data.RGB;
 import transformation.context.TransformationMatrix;
 import transformation.context.line_filters.normalization.Normalizer;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.List;
 
 /**
  * Created by moles on 19.09.2016.
@@ -33,7 +35,24 @@ public class HightPassFilterMatrix extends TransformationMatrix {
     }
 
     public Color getFiltredValue() {
-        return null;
+        List<RGB[]> rbsArray = getcolumns();
+        RGB rgb;
+        int rSum = 0;
+        int gSum = 0;
+        int bSum = 0;
+        int size = mask.getSize();
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                rgb = getElement(i, j);
+                if (rgb == null) {
+                    continue;
+                }
+                rSum += rgb.getRed() * mask.getElement(i, j);
+                gSum += rgb.getGreen() * mask.getElement(i, j);
+                bSum += rgb.getBlue() * mask.getElement(i, j);
+            }
+        }
+        return normalizer.normalizing(rSum, gSum, bSum);
     }
 
 
