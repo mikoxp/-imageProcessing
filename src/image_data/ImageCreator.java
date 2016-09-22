@@ -12,28 +12,39 @@ public class ImageCreator {
      * image is transparent
      *
      * @param path   path
-     * @param width  width
-     * @param height height
+     * @param numberOfColumn  numberOfColumn
+     * @param numberOfLine numberOfLine
      * @return create iamge
      */
-    public ImageContainer createEmptyPNG(String path, int width, int height) {
-        BufferedImage empty = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-        ImageContainer imageContainer = new ImageContainer(empty, path, ImageFormat.PNG);
-        return imageContainer;
+    public ImageContainer createEmptyPNG(String path, int numberOfColumn, int numberOfLine) {
+        BufferedImage empty = new BufferedImage(numberOfColumn, numberOfLine, BufferedImage.TYPE_INT_ARGB);
+        return new ImageContainer(empty, path, ImageFormat.PNG);
     }
 
     /**
      * image is not transparent
      *
      * @param path   path
-     * @param width  width
-     * @param height height
+     * @param numberOfColumn  numberOfColumn
+     * @param numberOfLine numberOfLine
      * @return create iamge
      */
-    public ImageContainer createEmptyBMP(String path, int width, int height) {
-        BufferedImage empty = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-        ImageContainer imageContainer = new ImageContainer(empty, path, ImageFormat.JPG);
-        imageContainer.setImageFormat(ImageFormat.BMP);
-        return imageContainer;
+    public ImageContainer createEmptyBMP(String path, int numberOfColumn, int numberOfLine) {
+        BufferedImage empty = new BufferedImage(numberOfColumn, numberOfLine, BufferedImage.TYPE_INT_RGB);
+        return new ImageContainer(empty, path, ImageFormat.BMP);
     }
+
+    /**
+     * @param path           path
+     * @param format         image format
+     * @param numberOfColumn number of column
+     * @param numberOfLine   number of line
+     * @return create image
+     */
+    public ImageContainer createEmpty(String path, String format, int numberOfColumn, int numberOfLine) {
+        format = ImageFormat.suportedFormat(format) ? format : ImageFormat.BMP;
+        BufferedImage empty = new BufferedImage(numberOfColumn, numberOfLine, BufferedImage.TYPE_INT_RGB);
+        return new ImageContainer(empty, path, format);
+    }
+
 }
