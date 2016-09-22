@@ -25,7 +25,7 @@ public class HightPassFilterMatrix extends TransformationMatrix {
      * @param mask mask
      * @param normalizer modiule normalization
      */
-    public HightPassFilterMatrix(int line, int column, BufferedImage bufferedImage, Mask mask, Normalizer normalizer) {
+    public HightPassFilterMatrix(int column, int line, BufferedImage bufferedImage, Mask mask, Normalizer normalizer) {
         super(line, column,mask.getSize(), bufferedImage);
         if(normalizer==null){
             throw new NullPointerException("Normalizer is null");

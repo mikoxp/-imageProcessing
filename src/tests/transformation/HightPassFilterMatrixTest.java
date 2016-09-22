@@ -44,49 +44,55 @@ public class HightPassFilterMatrixTest {
 
     @Test
     public void getFiltredValue_FullField() throws Exception {
-        ImageContainer imageContainer = imageCreator.createEmptyBMP("", 3, 3);
-        BufferedImage bufferedImage = imageContainer.getBufferedImage();
-        bufferedImage.setRGB(0, 0, new RGB(255, 255, 255).getColor().getRGB());
-        bufferedImage.setRGB(0, 2, new RGB(255, 255, 255).getColor().getRGB());
-        bufferedImage.setRGB(1, 0, new RGB(125, 125, 125).getColor().getRGB());
-        bufferedImage.setRGB(1, 1, new RGB(200, 200, 200).getColor().getRGB());
-
         int[][] value = new int[3][3];
-        value[0][0] = 2;
-        value[0][2] = -2;
-        value[1][0] = 2;
-        value[1][1] = -1;
-        value[1][2] = -2;
-        value[2][1] = 2;
+        value[0][0]=-1;
+        value[1][0]=-1;
+        value[2][0]=-1;
+        value[0][2]=1;
+        value[1][2]=1;
+        value[2][2]=1;
         Mask mask = new Mask(value);
         Normalizer normalizer = new ModuleNormalizer();
-        hightPassFilterMatrix = new HightPassFilterMatrix(1, 1, bufferedImage, mask, normalizer);
-        Color color = hightPassFilterMatrix.getFiltredValue();
-        Assert.assertEquals(new RGB(50, 50, 50), new RGB(color));
+        BufferedImage mark=imageCreator.createEmptyBMP("",3,3).getBufferedImage();
+        RGB rgb;
+        int index=0;
+        for(int i=0;i<3;i++){
+            for(int j=0;j<3;j++){
+                index++;
+                rgb=new RGB(index,index,index);
+                mark.setRGB(j,i,rgb.getColor().getRGB());
+            }
+        }
+        hightPassFilterMatrix=new HightPassFilterMatrix(1,1,mark,mask,normalizer);
+        Color color=hightPassFilterMatrix.getFiltredValue();
+        Assert.assertEquals(new RGB(6,6,6),new RGB(color));
     }
 
     @Test
     public void getFiltredValue_MarginPoint() throws Exception {
-        ImageContainer imageContainer = imageCreator.createEmptyBMP("", 3, 3);
-        BufferedImage bufferedImage = imageContainer.getBufferedImage();
-        bufferedImage.setRGB(0, 0, new RGB(255, 255, 255).getColor().getRGB());
-        bufferedImage.setRGB(0, 2, new RGB(255, 255, 255).getColor().getRGB());
-        bufferedImage.setRGB(1, 0, new RGB(125, 125, 125).getColor().getRGB());
-        bufferedImage.setRGB(1, 1, new RGB(200, 200, 200).getColor().getRGB());
-
         int[][] value = new int[3][3];
-        value[0][0] = 2;
-        value[0][2] = -2;
-        value[1][0] = 2;
-        value[1][1] = -1;
-        value[1][2] = -2;
-        value[2][1] = 2;
+        value[0][0]=-1;
+        value[1][0]=-1;
+        value[2][0]=-1;
+        value[0][2]=1;
+        value[1][2]=1;
+        value[2][2]=1;
         Mask mask = new Mask(value);
         Normalizer normalizer = new ModuleNormalizer();
-        hightPassFilterMatrix = new HightPassFilterMatrix(0, 0, bufferedImage, mask, normalizer);
-        Color color = hightPassFilterMatrix.getFiltredValue();
-        Assert.assertEquals(new RGB(5, 5, 5), new RGB(color));
-    }
+        BufferedImage mark=imageCreator.createEmptyBMP("",3,3).getBufferedImage();
+        RGB rgb;
+        int index=0;
+        for(int i=0;i<3;i++){
+            for(int j=0;j<3;j++){
+                index++;
+                rgb=new RGB(index,index,index);
+                mark.setRGB(j,i,rgb.getColor().getRGB());
+            }
+        }
+        hightPassFilterMatrix=new HightPassFilterMatrix(0,0,mark,mask,normalizer);
+        Color color=hightPassFilterMatrix.getFiltredValue();
+        Assert.assertEquals(new RGB(7,7,7),new RGB(color));
+}
 
 
 }
