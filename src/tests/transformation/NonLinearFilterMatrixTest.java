@@ -40,7 +40,7 @@ public class NonLinearFilterMatrixTest {
             bufferedImage.setRGB(5, i, color);
         }
         NonLinearFilterMatrix nonLinearFilterMatrix = new NonLinearFilterMatrix(1, 1, 3, bufferedImage);
-        assertEquals(new RGB(15, 15, 15), nonLinearFilterMatrix.maximalValue());
+        assertEquals(new RGB(15, 15, 15).getColor(), nonLinearFilterMatrix.maximalValue());
     }
 
     @Test
@@ -66,7 +66,7 @@ public class NonLinearFilterMatrixTest {
             bufferedImage.setRGB(5, i, color);
         }
         NonLinearFilterMatrix nonLinearFilterMatrix = new NonLinearFilterMatrix(0, 0, 3, bufferedImage);
-        assertEquals(new RGB(15, 15, 15), nonLinearFilterMatrix.maximalValue());
+        assertEquals(new RGB(15, 15, 15).getColor(), nonLinearFilterMatrix.maximalValue());
     }
 
     @Test
@@ -92,7 +92,7 @@ public class NonLinearFilterMatrixTest {
             bufferedImage.setRGB(5, i, color);
         }
         NonLinearFilterMatrix nonLinearFilterMatrix = new NonLinearFilterMatrix(1, 1, 3, bufferedImage);
-        assertEquals(new RGB(5, 5, 5), nonLinearFilterMatrix.minimalValue());
+        assertEquals(new RGB(5, 5, 5).getColor(), nonLinearFilterMatrix.minimalValue());
     }
     @Test
     public void minimalValue_incopliteMatrix_Value(){
@@ -117,7 +117,7 @@ public class NonLinearFilterMatrixTest {
             bufferedImage.setRGB(5, i, color);
         }
         NonLinearFilterMatrix nonLinearFilterMatrix = new NonLinearFilterMatrix(0, 0, 3, bufferedImage);
-        assertEquals(new RGB(5, 5, 5), nonLinearFilterMatrix.minimalValue());
+        assertEquals(new RGB(5, 5, 5).getColor(), nonLinearFilterMatrix.minimalValue());
     }
     @Test
     public void medianValue_compliteMatrix_Value(){
@@ -142,7 +142,7 @@ public class NonLinearFilterMatrixTest {
             bufferedImage.setRGB(5, i, color);
         }
         NonLinearFilterMatrix nonLinearFilterMatrix=new NonLinearFilterMatrix(1,1,3,bufferedImage);
-        assertEquals(new RGB(10,10,9),nonLinearFilterMatrix.medianValue());
+        assertEquals(new RGB(10,10,9).getColor(),nonLinearFilterMatrix.medianValue());
     }
     @Test
     public void medianValue_incopliteMatrix_Value(){
@@ -167,7 +167,7 @@ public class NonLinearFilterMatrixTest {
             bufferedImage.setRGB(5, i, color);
         }
         NonLinearFilterMatrix nonLinearFilterMatrix=new NonLinearFilterMatrix(0,0,3,bufferedImage);
-        assertEquals(new RGB(10,10,10),nonLinearFilterMatrix.medianValue());
+        assertEquals(new RGB(10,10,10).getColor(),nonLinearFilterMatrix.medianValue());
     }
     @Test
     public void medianValue_incopliteMatrixBiggestSize_Value(){
@@ -192,6 +192,6 @@ public class NonLinearFilterMatrixTest {
             bufferedImage.setRGB(5, i, color);
         }
         NonLinearFilterMatrix nonLinearFilterMatrix=new NonLinearFilterMatrix(1,1,5,bufferedImage);
-        assertEquals(new RGB(12,12,12),nonLinearFilterMatrix.medianValue());
+        assertEquals(new RGB(12,12,12).getColor(),nonLinearFilterMatrix.medianValue());
     }
 }
