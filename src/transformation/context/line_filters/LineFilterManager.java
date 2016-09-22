@@ -44,7 +44,6 @@ public class LineFilterManager {
         for (int i = 0; i < imageContainer.getNumberOfLine(); i++) {
             hightPassFilterMatrix = new HightPassFilterMatrix(0, i, mark, mask, normalizer);
             for (int j = 0; j < imageContainer.getNumberOfColumn(); j++) {
-                //hightPassFilterMatrix = new HightPassFilterMatrix(j, i, mark, mask, normalizer);
                 color = hightPassFilterMatrix.getFiltredValue();
                 image.setRGB(j, i, color.getRGB());
                 hightPassFilterMatrix.moveOnColumn();
@@ -57,7 +56,20 @@ public class LineFilterManager {
      * @param imageContainer image data
      * @param mask           mask
      */
-    public void lowPassFilter(ImageContainer imageContainer, Mask mask) {
-
+    public ImageContainer lowPassFilter(ImageContainer imageContainer, Mask mask) {
+        BufferedImage mark = imageContainer.getBufferedImage();
+        String path = imageContainer.getFilePath() + "_lowPassFilter" + mask.getStringMask() + "_";
+        ImageContainer result;
+        result = imageCreator.createEmpty(path, imageContainer.getImageFormat(), imageContainer.getNumberOfColumn(), imageContainer.getNumberOfLine());
+        BufferedImage image = result.getBufferedImage();
+        for (int i = 0; i < imageContainer.getNumberOfLine(); i++) {
+            lowPassFilterMatrix=new LowPassFilterMatrix(0,i,mask,mark);
+            for (int j = 0; j < imageContainer.getNumberOfColumn(); j++) {
+                color = lowPassFilterMatrix.getFiltredValue();
+                image.setRGB(j, i, color.getRGB());
+                lowPassFilterMatrix.moveOnColumn();
+            }
+        }
+        return result;
     }
 }

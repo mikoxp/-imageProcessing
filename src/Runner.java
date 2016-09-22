@@ -18,7 +18,8 @@ public class Runner {
     public static void main(String[] args) {
         PointTransformationManager pointTranManager=new PointTransformationManager();
         NonLinearFilterManager nonLinearFilterManager=new NonLinearFilterManager();
-        System.out.println("IO Start");
+        LineFilterManager lineFilterManager=new LineFilterManager();
+
         try {
             ImageContainer imageContainer = ImageFileManager.loadFromDisk(path);
             ImageContainer max=nonLinearFilterManager.maximalValue(imageContainer,3);
@@ -29,10 +30,29 @@ public class Runner {
             ImageFileManager.saveForDisk(median);
             ImageContainer median2=nonLinearFilterManager.medianValue(imageContainer,5);
             ImageFileManager.saveForDisk(median2);
+            Mask mask_average1=new Mask("mask/average1.mask");
+            ImageContainer average=lineFilterManager.lowPassFilter(imageContainer,mask_average1);
+            ImageFileManager.saveForDisk(average);
+            Mask mask_average2=new Mask("mask/average2.mask");
+            ImageContainer average2=lineFilterManager.lowPassFilter(imageContainer,mask_average2);
+            ImageFileManager.saveForDisk(average2);
+            Normalizer normalizer=new ModuleNormalizer();
+            Mask mask_corner=new Mask("mask/corner_up_left.mask");
+            ImageContainer corner=lineFilterManager.highPassFilter(imageContainer,mask_corner,normalizer);
+            ImageFileManager.saveForDisk(corner);
+            Mask mask_laplas=new Mask("mask/laplas4.mask");
+            ImageContainer laplas=lineFilterManager.highPassFilter(imageContainer,mask_laplas,normalizer);
+            ImageFileManager.saveForDisk(laplas);
+            Mask mask_r1=new Mask("mask/roberts1.mask");
+            ImageContainer r1=lineFilterManager.highPassFilter(imageContainer,mask_r1,normalizer);
+            ImageFileManager.saveForDisk(r1);
+            Mask mask_r2=new Mask("mask/roberts2.mask");
+            ImageContainer r2=lineFilterManager.highPassFilter(imageContainer,mask_r2,normalizer);
+            ImageFileManager.saveForDisk(r2);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        System.out.println("DONE!!!");
     }
 
 }
