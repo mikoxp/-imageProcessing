@@ -3,6 +3,7 @@ package transformation.context.nonlinear_filters;
 import image_data.RGB;
 import transformation.context.TransformationMatrix;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -56,7 +57,7 @@ public class NonLinearFilterMatrix extends TransformationMatrix{
      *
      * @return maximal value with matrix
      */
-    public RGB maximalValue(){
+    public Color maximalValue(){
         rgb=null;
         List<List<Integer>> colors=extractColorComponentsValueToLists();
         int i=colors.get(0).size();
@@ -64,28 +65,28 @@ public class NonLinearFilterMatrix extends TransformationMatrix{
         int g=colors.get(1).get(i-1);
         int b=colors.get(2).get(i-1);
         rgb=new RGB(r,g,b);
-        return rgb;
+        return rgb.getColor();
     }
 
     /**
      *
      * @return minimal value with matrix
      */
-    public RGB minimalValue(){
+    public Color minimalValue(){
         rgb=null;
         List<List<Integer>> colors=extractColorComponentsValueToLists();
         int r=colors.get(0).get(0);
         int g=colors.get(1).get(0);
         int b=colors.get(2).get(0);
         rgb=new RGB(r,g,b);
-        return rgb;
+        return rgb.getColor();
     }
 
     /**
      *
      * @return median value with matrix
      */
-    public RGB  medianValue(){
+    public Color  medianValue(){
         rgb=null;
         List<List<Integer>> colors=extractColorComponentsValueToLists();
         int r=0;
@@ -102,6 +103,6 @@ public class NonLinearFilterMatrix extends TransformationMatrix{
             b=colors.get(2).get(i/2);
         }
         rgb=new RGB(r,g,b);
-        return rgb;
+        return rgb.getColor();
     }
 }
