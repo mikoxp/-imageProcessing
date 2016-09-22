@@ -35,15 +35,22 @@ public class ImageFileManager {
     }
 
     /**
-     * @param imageContainer imageContainer
-     * @throws IOException in out error
+     *
+     * @param imageContainer image
+     * @return result
      */
-    public static void saveForDisk(ImageContainer imageContainer) throws IOException {
+    public static boolean saveForDisk(ImageContainer imageContainer)  {
         BufferedImage bufferedImage = imageContainer.getBufferedImage();
         String path = imageContainer.getFilePath();
         String format = imageContainer.getImageFormat();
         File file = new File(path + "." + format);
-        ImageIO.write(bufferedImage, format, file);
+        try {
+            ImageIO.write(bufferedImage, format, file);
+        }catch (IOException e){
+            System.err.println(e);
+            return false;
+        }
+        return true;
     }
 
     /**
