@@ -11,7 +11,7 @@ import transformation.context.line_filters.normalization.ScalingNormalizer;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by moles on 20.09.2016.
@@ -22,10 +22,10 @@ public class ScalingNormalizerTest {
 
     @Test
     public void constructor_calcRange(){
-        ImageContainer imageContainer=imageCreator.createEmptyBMP("",4,4);
+        ImageContainer imageContainer = imageCreator.createEmptyBMP("", 4, 3);
         BufferedImage bufferedImage=imageContainer.getBufferedImage();
         bufferedImage.setRGB(0,0,new RGB(255,255,255).getColor().getRGB());
-        bufferedImage.setRGB(0,3,new RGB(255,255,255).getColor().getRGB());
+        bufferedImage.setRGB(3, 0, new RGB(255, 255, 255).getColor().getRGB());
 
         int [][] value =new int[3][3];
         value[0][0]=2;

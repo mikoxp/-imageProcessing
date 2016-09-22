@@ -58,10 +58,10 @@ public class ScalingNormalizer implements Normalizer{
         int size=mask.getSize();
         TransformationMatrix matrix;
         for(int i=0;i<bufferedImage.getHeight();i++){
-            matrix=new TransformationMatrix(i,0,size,bufferedImage);
+            matrix = new TransformationMatrix(0, i, size, bufferedImage);
             for(int j=0;j<bufferedImage.getWidth();j++){
                 comparePointValue(matrix,mask);
-                matrix.nextMatrix();
+                matrix.moveOnColumn();
             }
         }
     }
