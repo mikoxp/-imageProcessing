@@ -38,4 +38,11 @@ public class ModuleNormalizer implements Normalizer{
         RGB rgb=new RGB(red,green,blue);
         return rgb.getColor();
     }
+
+    /**
+     * @return kind of normalizer
+     */
+    public String getKind() {
+        return "Module";
+    }
 }

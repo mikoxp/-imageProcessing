@@ -128,10 +128,23 @@ public class ScalingNormalizer implements Normalizer{
      * @return Color after normalization
      */
     public Color normalizing(int red, int green, int blue) {
-        int r=(red-redRange.getMin())*255/(redRange.getMax()-redRange.getMin());
-        int g=(green-greenRange.getMin())*255/(greenRange.getMax()-greenRange.getMin());
-        int b=(blue-blueRange.getMin())*255/(blueRange.getMax()-blueRange.getMin());
-        RGB rgb=new RGB(r,g,b);
-        return rgb.getColor();
+        Color color = null;
+        RGB rgb;
+        int r, g, b;
+
+        r = (red - redRange.getMin()) * 255 / (redRange.getMax() - redRange.getMin());
+        g = (green - greenRange.getMin()) * 255 / (greenRange.getMax() - greenRange.getMin());
+        b = (blue - blueRange.getMin()) * 255 / (blueRange.getMax() - blueRange.getMin());
+        rgb = new RGB(r, g, b);
+        color = rgb.getColor();
+        return color;
+
+    }
+
+    /**
+     * @return kind of normalizer
+     */
+    public String getKind() {
+        return "Scaling";
     }
 }

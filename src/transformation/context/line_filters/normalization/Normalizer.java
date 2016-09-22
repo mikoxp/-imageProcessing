@@ -15,4 +15,9 @@ public interface Normalizer {
      * @return Color after normalization
      */
     public Color normalizing(int red, int green, int blue);
+
+    /**
+     * @return kind of normalizer
+     */
+    public String getKind();
 }
