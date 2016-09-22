@@ -1,6 +1,5 @@
 package tests.transformation;
 
-import image_data.ImageContainer;
 import image_data.ImageCreator;
 import image_data.RGB;
 import org.junit.Assert;
@@ -46,10 +45,10 @@ public class HightPassFilterMatrixTest {
     public void getFiltredValue_FullField() throws Exception {
         int[][] value = new int[3][3];
         value[0][0]=-1;
-        value[1][0]=-1;
-        value[2][0]=-1;
-        value[0][2]=1;
-        value[1][2]=1;
+        value[0][1] = -1;
+        value[0][2] = -1;
+        value[2][0] = 1;
+        value[2][1] = 1;
         value[2][2]=1;
         Mask mask = new Mask(value);
         Normalizer normalizer = new ModuleNormalizer();
@@ -72,10 +71,10 @@ public class HightPassFilterMatrixTest {
     public void getFiltredValue_MarginPoint() throws Exception {
         int[][] value = new int[3][3];
         value[0][0]=-1;
-        value[1][0]=-1;
-        value[2][0]=-1;
-        value[0][2]=1;
-        value[1][2]=1;
+        value[0][1] = -1;
+        value[0][2] = -1;
+        value[2][0] = 1;
+        value[2][1] = 1;
         value[2][2]=1;
         Mask mask = new Mask(value);
         Normalizer normalizer = new ModuleNormalizer();

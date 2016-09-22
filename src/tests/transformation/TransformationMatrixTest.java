@@ -1,5 +1,6 @@
 package tests.transformation;
 
+import image_data.ImageContainer;
 import image_data.ImageCreator;
 import image_data.RGB;
 import org.junit.Test;
@@ -19,32 +20,59 @@ import static org.junit.Assert.assertEquals;
 public class TransformationMatrixTest {
     private final int smallSize=3;
     private final int bigSize=5;
-   private ImageToTest imageToTest=new ImageToTest();
     private ImageCreator imageCreator=new ImageCreator();
+
+    /**
+     *
+     */
     @Test(expected = NullPointerException.class)
     public void constructor_BufforedImageIsNull_NullPointerException(){
         new TransformationMatrix(0,0,3,null);
     }
+
+    /**
+     *
+     */
     @Test(expected = IllegalArgumentException.class)
     public void constructor_sizeIsEven_IllegalArgumentException(){
         new TransformationMatrix(15,15,2,new BufferedImage(200,100,BufferedImage.TYPE_INT_RGB));
     }
+
+    /**
+     *
+     */
     @Test(expected = IllegalArgumentException.class)
     public void constructor_columnIsNotInImage_IllegalArgumentException(){
         new TransformationMatrix(250,15,3,new BufferedImage(200,100,BufferedImage.TYPE_INT_RGB));
     }
+
+    /**
+     *
+     */
     @Test(expected = IllegalArgumentException.class)
     public void constructor_LineIsNotInImage_IllegalArgumentException(){
         new TransformationMatrix(15,250,3,new BufferedImage(100,200,BufferedImage.TYPE_INT_RGB));
     }
+
+    /**
+     *
+     */
     @Test(expected = IllegalArgumentException.class)
     public void constructor_xIsNegative_IllegalArgumentException(){
         new TransformationMatrix(-15,15,3,new BufferedImage(200,100,BufferedImage.TYPE_INT_RGB));
     }
+
+    /**
+     *
+     */
     @Test(expected = IllegalArgumentException.class)
     public void constructor_yIsNegative_IllegalArgumentException(){
         new TransformationMatrix(15,-150,3,new BufferedImage(200,100,BufferedImage.TYPE_INT_RGB));
     }
+
+    /**
+     *
+     */
     @Test
     public void constructor_fillMatrix_corectMatrix(){
         TransformationMatrix matrix;
@@ -164,6 +192,10 @@ public class TransformationMatrixTest {
             assertArrayEquals(rgbs.get(i), matrix.getcolumns().get(i));
         }
     }
+
+    /**
+     *
+     */
     @Test
     public void moveOnColumn_nextColumn_corectValue(){
         TransformationMatrix matrix;
@@ -199,6 +231,10 @@ public class TransformationMatrixTest {
             assertArrayEquals(rgbs.get(i), matrix.getcolumns().get(i));
         }
     }
+
+    /**
+     *
+     */
     @Test
     public void moveOnColumn_lastColumn_doNothing(){
         TransformationMatrix matrix;
@@ -234,9 +270,14 @@ public class TransformationMatrixTest {
             assertArrayEquals(rgbs.get(i), matrix.getcolumns().get(i));
         }
     }
+
+    /**
+     *
+     */
     @Test
     public void getColumns_AllfillFileds_numberOfFiled(){
-        BufferedImage bufferedImage=imageToTest.getBlackImageToTest();
+        ImageContainer imageContainer = imageCreator.createEmptyBMP("", 100, 100);
+        BufferedImage bufferedImage = imageContainer.getBufferedImage();
         TransformationMatrix matrix=new TransformationMatrix(1,1,smallSize,bufferedImage);
         List<RGB[]> columns = matrix.getcolumns();
         int i=0;
@@ -249,9 +290,14 @@ public class TransformationMatrixTest {
         }
        assertEquals(9,i);
     }
+
+    /**
+     *
+     */
     @Test
     public void getColumns_AllfillFiledsBiggest_numberOfFiled(){
-        BufferedImage bufferedImage=imageToTest.getBlackImageToTest();
+        ImageContainer imageContainer = imageCreator.createEmptyBMP("", 100, 100);
+        BufferedImage bufferedImage = imageContainer.getBufferedImage();
         TransformationMatrix matrix=new TransformationMatrix(2,2,bigSize,bufferedImage);
         List<RGB[]> columns = matrix.getcolumns();
         int i=0;
@@ -264,9 +310,14 @@ public class TransformationMatrixTest {
         }
         assertEquals(25,i);
     }
+
+    /**
+     *
+     */
     @Test
     public void getColumns_incompletefillFileds_numberOfFiled(){
-        BufferedImage bufferedImage=imageToTest.getBlackImageToTest();
+        ImageContainer imageContainer = imageCreator.createEmptyBMP("", 100, 100);
+        BufferedImage bufferedImage = imageContainer.getBufferedImage();
         TransformationMatrix matrix=new TransformationMatrix(0,0,smallSize,bufferedImage);
         List<RGB[]> columns = matrix.getcolumns();
         int i=0;
@@ -279,9 +330,14 @@ public class TransformationMatrixTest {
         }
         assertEquals(4,i);
     }
+
+    /**
+     *
+     */
     @Test
     public void getColumns_incompletefillFiledsBiggest_numberOfFiled(){
-        BufferedImage bufferedImage=imageToTest.getBlackImageToTest();
+        ImageContainer imageContainer = imageCreator.createEmptyBMP("", 100, 100);
+        BufferedImage bufferedImage = imageContainer.getBufferedImage();
         TransformationMatrix matrix=new TransformationMatrix(0,0,bigSize,bufferedImage);
         List<RGB[]> columns = matrix.getcolumns();
         int i=0;
@@ -294,21 +350,90 @@ public class TransformationMatrixTest {
         }
         assertEquals(9,i);
     }
+
+    /**
+     *
+     */
     @Test
     public void getElement_chooseElement_ElementRGB(){
-        BufferedImage bufferedImage=imageToTest.getValueImageToTest();
+        ImageContainer imageContainer = imageCreator.createEmptyBMP("", 100, 100);
+        BufferedImage bufferedImage = imageContainer.getBufferedImage();
+        RGB rgb = new RGB(15, 15, 15);
+        int color = rgb.getColor().getRGB();
+        for (int i = 0; i < 10; i++) {
+            bufferedImage.setRGB(0, i, color);
+            bufferedImage.setRGB(3, i, color);
+        }
+        rgb = new RGB(5, 5, 5);
+        color = rgb.getColor().getRGB();
+        for (int i = 0; i < 10; i++) {
+            bufferedImage.setRGB(1, i, color);
+            bufferedImage.setRGB(4, i, color);
+        }
+        rgb = new RGB(10, 10, 9);
+        color = rgb.getColor().getRGB();
+        for (int i = 0; i < 10; i++) {
+            bufferedImage.setRGB(2, i, color);
+            bufferedImage.setRGB(5, i, color);
+        }
         TransformationMatrix matrix=new TransformationMatrix(1,1,smallSize,bufferedImage);
-        assertEquals(new RGB(5,5,5),matrix.getElement(0,1));
+        assertEquals(new RGB(5, 5, 5), matrix.getElement(1, 0));
     }
+
+    /**
+     *
+     */
     @Test(expected = IllegalArgumentException.class)
     public void getElement_incorectCoordinate_IllegalArgumentException(){
-        BufferedImage bufferedImage=imageToTest.getValueImageToTest();
+        ImageContainer imageContainer = imageCreator.createEmptyBMP("", 100, 100);
+        BufferedImage bufferedImage = imageContainer.getBufferedImage();
+        RGB rgb = new RGB(15, 15, 15);
+        int color = rgb.getColor().getRGB();
+        for (int i = 0; i < 10; i++) {
+            bufferedImage.setRGB(0, i, color);
+            bufferedImage.setRGB(3, i, color);
+        }
+        rgb = new RGB(5, 5, 5);
+        color = rgb.getColor().getRGB();
+        for (int i = 0; i < 10; i++) {
+            bufferedImage.setRGB(1, i, color);
+            bufferedImage.setRGB(4, i, color);
+        }
+        rgb = new RGB(10, 10, 9);
+        color = rgb.getColor().getRGB();
+        for (int i = 0; i < 10; i++) {
+            bufferedImage.setRGB(2, i, color);
+            bufferedImage.setRGB(5, i, color);
+        }
         TransformationMatrix matrix=new TransformationMatrix(1,1,smallSize,bufferedImage);
         matrix.getElement(0,5);
     }
+
+    /**
+     *
+     */
     @Test(expected = IllegalArgumentException.class)
     public void getElement_negativeCoordinate_IllegalArgumentException(){
-        BufferedImage bufferedImage=imageToTest.getValueImageToTest();
+        ImageContainer imageContainer = imageCreator.createEmptyBMP("", 100, 100);
+        BufferedImage bufferedImage = imageContainer.getBufferedImage();
+        RGB rgb = new RGB(15, 15, 15);
+        int color = rgb.getColor().getRGB();
+        for (int i = 0; i < 10; i++) {
+            bufferedImage.setRGB(0, i, color);
+            bufferedImage.setRGB(3, i, color);
+        }
+        rgb = new RGB(5, 5, 5);
+        color = rgb.getColor().getRGB();
+        for (int i = 0; i < 10; i++) {
+            bufferedImage.setRGB(1, i, color);
+            bufferedImage.setRGB(4, i, color);
+        }
+        rgb = new RGB(10, 10, 9);
+        color = rgb.getColor().getRGB();
+        for (int i = 0; i < 10; i++) {
+            bufferedImage.setRGB(2, i, color);
+            bufferedImage.setRGB(5, i, color);
+        }
         TransformationMatrix matrix=new TransformationMatrix(1,1,smallSize,bufferedImage);
         matrix.getElement(0,-5);
     }

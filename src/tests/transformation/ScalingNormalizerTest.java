@@ -29,7 +29,7 @@ public class ScalingNormalizerTest {
 
         int [][] value =new int[3][3];
         value[0][0]=2;
-        value[0][2]=-2;
+        value[2][0] = -2;
         Mask mask=new Mask(value);
         ScalingNormalizer normalizer=new ScalingNormalizer(bufferedImage,mask);
         NormalizerRange range=new NormalizerRange(-510,510);

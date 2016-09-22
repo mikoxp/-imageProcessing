@@ -1,9 +1,10 @@
 package tests.transformation;
 
+import org.junit.Assert;
 import org.junit.Test;
 import transformation.context.line_filters.Mask;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by moles on 19.09.2016.
@@ -35,5 +36,19 @@ public class MaskTest {
     public void getElement_incoect_height_IllegalArgumentException() throws Exception {
         Mask mask=new Mask(new int[5][5]);
         mask.getElement(0,55);
+    }
+
+    @Test
+    public void getStringMask_value() {
+        int[][] value = new int[3][3];
+        value[0][0] = 2;
+        value[0][2] = -2;
+        value[1][0] = 2;
+        value[1][1] = -1;
+        value[1][2] = -2;
+        value[2][1] = 2;
+        Mask mask = new Mask(value);
+        String mark = "_ 2 0 -2_ 2 -1 -2_ 0 2 0";
+        Assert.assertEquals(mark, mask.getStringMask());
     }
 }

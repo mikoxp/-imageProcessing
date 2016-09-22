@@ -10,7 +10,7 @@ public class Mask {
 
     /**
      *
-     * @param values values [line][column]
+     * @param values values [column][line]
      */
     public Mask(int[][] values) {
         if(values.length!=values[0].length){
@@ -33,10 +33,24 @@ public class Mask {
      * @param column column
      * @return element mask
      */
-    public int getElement(int line, int column) {
+    public int getElement(int column, int line) {
         if (line >= size || column >= size) {
             throw new IllegalArgumentException("wrong coordinate");
         }
-        return values[line][column];
+        return values[column][line];
+    }
+
+    /**
+     * @return value of mask in stringData
+     */
+    public String getStringMask() {
+        String txt = "";
+        for (int i = 0; i < size; i++) {
+            txt += "_";
+            for (int j = 0; j < size; j++) {
+                txt += " " + values[i][j] + "";
+            }
+        }
+        return txt;
     }
 }

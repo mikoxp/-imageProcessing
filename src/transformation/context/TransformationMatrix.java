@@ -123,7 +123,7 @@ public class TransformationMatrix {
      * @param column column
      * @return element
      */
-    public RGB getElement(int line,int column){
+    public RGB getElement(int column, int line) {
         if(line<0 || line>=size || column<0|| column>=size){
             throw new IllegalArgumentException("Incorect Coordinate");
         }
