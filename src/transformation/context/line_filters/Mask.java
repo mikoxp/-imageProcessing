@@ -48,7 +48,7 @@ public class Mask {
         for (int i = 0; i < size; i++) {
             txt += "_";
             for (int j = 0; j < size; j++) {
-                txt += " " + values[i][j] + "";
+                txt += " " + values[j][i] + "";
             }
         }
         return txt;

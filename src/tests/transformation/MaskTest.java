@@ -42,11 +42,11 @@ public class MaskTest {
     public void getStringMask_value() {
         int[][] value = new int[3][3];
         value[0][0] = 2;
-        value[0][2] = -2;
-        value[1][0] = 2;
+        value[2][0] = -2;
+        value[0][1] = 2;
         value[1][1] = -1;
-        value[1][2] = -2;
-        value[2][1] = 2;
+        value[2][1] = -2;
+        value[1][2] = 2;
         Mask mask = new Mask(value);
         String mark = "_ 2 0 -2_ 2 -1 -2_ 0 2 0";
         Assert.assertEquals(mark, mask.getStringMask());
