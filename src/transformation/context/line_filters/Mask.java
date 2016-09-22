@@ -1,5 +1,10 @@
 package transformation.context.line_filters;
 
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Scanner;
+
 /**
  * Created by moles on 19.09.2016.
  * @author moles
@@ -23,6 +28,17 @@ public class Mask {
         size=values.length;
     }
 
+    public Mask(String filePath) throws IOException {
+        FileReader fileReader = new FileReader(filePath);
+        Scanner scanner = new Scanner(fileReader);
+        size = scanner.nextInt();
+        values = new int[size][size];
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                values[j][i] = scanner.nextInt();
+            }
+        }
+    }
     public int getSize() {
         return size;
     }
@@ -52,5 +68,20 @@ public class Mask {
             }
         }
         return txt;
+    }
+
+    /**
+     * @param path file path
+     */
+    public void saveToFile(String path) throws IOException {
+        PrintWriter writer = new PrintWriter(path, "UTF-8");
+        writer.println(size);
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                writer.print(values[j][i] + " ");
+            }
+            writer.print("\n");
+        }
+        writer.close();
     }
 }
