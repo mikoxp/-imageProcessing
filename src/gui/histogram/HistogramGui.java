@@ -28,8 +28,8 @@ public class HistogramGui extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         FXMLLoader loader=new FXMLLoader();
-        loader.setLocation(this.getClass().getResource("window.fxml"));
-        loader.setController(new Controller());
+        loader.setLocation(this.getClass().getResource("histogram.fxml"));
+        loader.setController(new HistogramController());
         Parent root = loader.load();
         Scene scene=new Scene(root);
         scene.getStylesheets().add("gui/css/histogram.css");

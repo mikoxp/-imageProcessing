@@ -13,9 +13,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- *
+ *@author moles
  */
-public class Controller implements Initializable {
+public class HistogramController implements Initializable {
     private Histogram histogram;
     @FXML
     private BarChart<String,Integer> red;
@@ -26,7 +26,7 @@ public class Controller implements Initializable {
     @FXML
     private BarChart<String,Integer> blue;
 
-    public Controller() {
+    public HistogramController() {
 
     }
 
@@ -42,6 +42,10 @@ public class Controller implements Initializable {
         greenChartData();
         blueChartData();
     }
+
+    /**
+     * set axis name
+     */
     private void setChart(){
         Axis<String> xAxis = red.getXAxis();
         Axis<Integer> yAxis = red.getYAxis();
@@ -56,6 +60,10 @@ public class Controller implements Initializable {
         yAxis1.setLabel("Number of value");
         yAxis2.setLabel("Number of value");
     }
+
+    /**
+     * set red chart data
+     */
     @FXML
     private void redChartData(){
         XYChart.Series<String,Integer> series1=new XYChart.Series<String,Integer>();
@@ -69,6 +77,10 @@ public class Controller implements Initializable {
         }
         red.getData().add(series1);
     }
+
+    /**
+     * set blue chart data
+     */
     @FXML
     private void blueChartData(){
         XYChart.Series<String,Integer> series1=new XYChart.Series<String,Integer>();
@@ -82,6 +94,10 @@ public class Controller implements Initializable {
         }
         blue.getData().addAll(series1,series2,series3);
     }
+
+    /**
+     * set green chart data
+     */
     @FXML
     private void greenChartData(){
         XYChart.Series<String,Integer> series1=new XYChart.Series<String,Integer>();
