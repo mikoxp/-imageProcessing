@@ -1,4 +1,4 @@
-package gui.chart;
+package gui.histogram;
 
 
 import histogram.Histogram;

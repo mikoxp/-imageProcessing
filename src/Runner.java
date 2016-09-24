@@ -1,4 +1,4 @@
-import gui.chart.HistogramGui;
+import gui.histogram.HistogramGui;
 import image_data.ImageContainer;
 import io.ImageFileManager;
 

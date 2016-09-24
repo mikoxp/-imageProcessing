@@ -1,4 +1,4 @@
-package gui.chart;
+package gui.histogram;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -32,10 +32,12 @@ public class HistogramGui extends Application {
         loader.setController(new Controller());
         Parent root = loader.load();
         Scene scene=new Scene(root);
-        scene.getStylesheets().add("gui/chart/style.css");
-        primaryStage.setTitle("ChartBar");
+        scene.getStylesheets().add("gui/css/histogram.css");
+        primaryStage.setTitle("Histogram");
         primaryStage.setScene(scene);
         primaryStage.setResizable(true);
+        primaryStage.setMinHeight(500);
+        primaryStage.setMinWidth(300);
         primaryStage.show();
     }
     public void showHistogram(){
