@@ -4,7 +4,6 @@ import image_data.ImageContainer;
 import image_data.ImageCreator;
 import image_data.RGB;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
 
 /**
@@ -25,6 +24,9 @@ public class Binarization {
      * @return binarizated image
      */
     public ImageContainer lowerThreshold(ImageContainer imageContainer, RGB threshold){
+        if(imageContainer==null || threshold==null){
+            throw new IllegalArgumentException("all argumet must be not null");
+        }
         int color;
         RGB rgb;
         String path=imageContainer.getFilePath()+"_binarization_lower"+threshold;
@@ -72,6 +74,9 @@ public class Binarization {
      * @return binarizated image
      */
     public ImageContainer upperThreshold(ImageContainer imageContainer, RGB threshold){
+        if(imageContainer==null || threshold==null){
+            throw new IllegalArgumentException("all argumet must be not null");
+        }
         int color;
         RGB rgb;
         String path=imageContainer.getFilePath()+"_binarization_upper"+threshold;
@@ -119,6 +124,9 @@ public class Binarization {
      * @return binarizated image
      */
     public ImageContainer doubleThreshold(ImageContainer imageContainer, RGB lower,RGB upper){
+        if(imageContainer==null || lower==null|| upper==null){
+            throw new IllegalArgumentException("all argumet must be not null");
+        }
         int color;
         RGB rgb;
         String path=imageContainer.getFilePath()+"_binarization_double"+lower+"_"+upper;
@@ -143,18 +151,18 @@ public class Binarization {
      */
     private int doubleThreshold_Changer(int color, RGB lower,RGB upper){
         RGB rgb=new RGB(color);
-        if(rgb.getRed()>lower.getRed()&&rgb.getRed()<upper.getRed()){
+        if(rgb.getRed()>=lower.getRed()&&rgb.getRed()<upper.getRed()){
             rgb.setRed(255);
         }
         else {
             rgb.setRed(0);
         }
-        if(rgb.getGreen()>lower.getGreen()&&rgb.getGreen()<upper.getGreen()){
+        if(rgb.getGreen()>=lower.getGreen()&&rgb.getGreen()<upper.getGreen()){
             rgb.setGreen(255);
         }else{
             rgb.setGreen(0);
         }
-        if(rgb.getBlue()>lower.getBlue()&&rgb.getBlue()<upper.getBlue()){
+        if(rgb.getBlue()>=lower.getBlue()&&rgb.getBlue()<upper.getBlue()){
             rgb.setBlue(255);
         }else {
             rgb.setBlue(0);
