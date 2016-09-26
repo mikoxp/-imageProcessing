@@ -105,7 +105,7 @@ public class RGB {
 
     @Override
     public String toString() {
-        return "RGB{" +
+        return "{" +
                 "red=" + red +
                 ", green=" + green +
                 ", blue=" + blue +
